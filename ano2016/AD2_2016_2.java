@@ -138,7 +138,7 @@ class Grafo {
 	}
 }
 
-public class AD2_ProgOO_2015_2 {
+public class AD2_ProgOO_2016_2 {
 	public static void main(String[] args) {
 		// Try with resources
 		// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
