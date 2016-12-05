@@ -22,12 +22,17 @@ class CarrinhoDeCompras2 {
 	}
 	
 	public boolean retira (int cod) {
-		for (Produto p : produtos) {
-			if (p.getCodigo() == cod) {
-				produtos.remove(p);
+//		for (Produto p : produtos) {
+//			if (p.getCodigo() == cod) {
+//				produtos.remove(p);
+//				return true;
+//			}
+//		}
+		for (int i=0; i<produtos.size(); i++)
+			if (produtos.get(i).getCodigo() == cod) {
+				produtos.remove(produtos.get(i));
 				return true;
 			}
-		}
 		return false;
 	}
 }
