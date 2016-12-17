@@ -18,7 +18,6 @@ class No {
 	}  
 }
 
-
 interface ListaMaluca {
 	public void inserir(int grupo, Object dado);
 	public Object consultar(int grupo);
@@ -65,7 +64,7 @@ class MinhaListaMaluca implements ListaMaluca {
 	public void inserir(int grupo, Object dado) {
 		inserirAntes(obterPrimeiro(grupo + 1), new No(grupo, dado));
 	}
-
+	
 	//Resposta da Questão 2 letra (c)  
 	public boolean estaVazia() { return (this.primeiro == null); }
 }
