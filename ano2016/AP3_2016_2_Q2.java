@@ -1,8 +1,8 @@
 package br.cederj.comp.ano2016;
 
 class EmptyGroupException extends RuntimeException {    
-	public EmptyGroupException() { 
-		super("O grupo de origem está vazio"); 
+	public EmptyGroupException(int grupo) { 
+		super("O grupo " + grupo + " está vazio"); 
 	}
 }
 
@@ -39,7 +39,7 @@ class MinhaListaMaluca implements ListaMaluca {
 	public Object consultar(int grupo) {
 		No no = obterPrimeiro(grupo);
 		if ((no == null) || (no.grupo != grupo)) 
-			throw new EmptyGroupException();
+			throw new EmptyGroupException(grupo);
 		return no.dado;
 	}
 

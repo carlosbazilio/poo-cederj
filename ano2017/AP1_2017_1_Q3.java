@@ -1,13 +1,12 @@
-package br.cederj.comp.ano2014;
+package br.cederj.comp.ano2017;
 
 class Ponto {
 	private double x, y;
-
 	public Ponto(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	// Necessário para acessar os campos na classe Ponto3D
 	public double getX() { return x; };
 	public double getY() { return y; };
@@ -37,10 +36,15 @@ class Ponto3D extends Ponto {
 				         Math.pow(p.getY() - this.getY(), 2) + 
 				         Math.pow(p.getZ() - this.getZ(), 2));
 	}
+	
+	public static double distancia (Ponto3D p, Ponto3D q) {
+		return Math.sqrt(Math.pow(p.getX() - q.getX(), 2) + 
+				         Math.pow(p.getY() - q.getY(), 2) + 
+				         Math.pow(p.getZ() - q.getZ(), 2));
+	}
 }
 
-public class AP1_2014_1_Q2 {
+public class AP1_2017_1_Q3 {
 	public static void main(String[] args) {
-
 	}
 }

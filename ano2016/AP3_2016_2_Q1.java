@@ -32,31 +32,35 @@ class Abastecimento {
 
 // Gabarito !!!!
 
-interface Gasto {
-	double getCusto();
-}
+//interface Gasto {
+//	double getCusto();
+//}
 
-class Manutencao implements Gasto {
-	String peca;
+abstract class Gasto {
 	double custo;
-	public Manutencao(String peca, double custo) {
-		this.peca = peca;
+
+	public Gasto(double custo) {
 		this.custo = custo;
 	}
+	
 	public double getCusto() {
 		return custo;
 	}
 }
 
-class Abastecimento implements Gasto {
-	float valor;
+class Manutencao extends Gasto {
+	String peca;
+	public Manutencao(String peca, double custo) {
+		super(custo);
+		this.peca = peca;
+	}
+}
+
+class Abastecimento extends Gasto {
 	String posto;
 	public Abastecimento(float valor, String posto) {
-		this.valor = valor;
+		super(valor);
 		this.posto = posto;
-	}
-	public double getCusto() {
-		return valor;
 	}
 }
 
@@ -86,7 +90,7 @@ public class AP3_2016_2_Q1 {
 		for (Gasto g : gastos) {
 			soma = soma + g.getCusto();
 		}
-		System.out.println("A soma dos valores gastos e': " + soma);
+		System.out.println("A soma dos valores gastos e': " + soma + " " + gastos.size());
 	}
 }
 
