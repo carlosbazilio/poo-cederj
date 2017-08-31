@@ -33,7 +33,7 @@ class Bombeiro implements Imposto {
 	}
 }
 
-// Classe requerida no item a) da questão.
+// Classe requerida na questão.
 //Apesar da questão só informar explicitamente que imóvel
 //possui uma lista impostos, o campo valor também é necessário
 //uma vez que o método getValor() da classe dada na questão
