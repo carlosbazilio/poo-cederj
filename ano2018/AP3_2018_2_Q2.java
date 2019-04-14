@@ -1,89 +1,97 @@
 package br.cederj.comp.ano2018;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-class Elemento {
-	int numero;
-	int frequencia;
-	
-	public Elemento(int numero) {
-		this.numero = numero;
-		this.frequencia = 1;
-	}
-	
-	public void novaOcorrencia() {
-		this.frequencia++;
-	}
-	
-	public String toString() {
-		return "(" + numero + "," + frequencia + ")";
-	}
-}
-
-class Elementos {
-	List<Elemento> valores;
-	
-	public Elementos() {
-		valores = new ArrayList<Elemento>();
-	}
-	
-	public Elemento pertence (int val) {
-		for (Elemento e: valores) {
-			if (e.numero == val)
-				return e;
-		}
-		return null;
-	}
-
-	public void adiciona(int val) {
-		Elemento e = this.pertence(val);
-		if (e != null)
-			e.novaOcorrencia();
-		else
-			valores.add(new Elemento(val));
-	}
-	
-	public void ordena() {
-		Collections.sort(valores, new ComparaElementos());
-	}
-}
-
-class ComparaElementos implements Comparator<Elemento> {
-	public int compare(Elemento o1, Elemento o2) {
-		if (o1.frequencia > o2.frequencia)
-			return -1;
-		else 
-			if (o1.frequencia < o2.frequencia)
-				return 1;
-			else 
-				if (o1.numero < o2.numero)
-					return -1;
-				else
-					if (o1.numero > o2.numero)
-						return 1;
-					else
-						return 0;
-	}
-}
+import java.io.*; 
 
 public class AP3_2018_2_Q2 {
-	public static void main(String[] args) {
-		Integer nums[] = {1, 5, 3, 2, 4, 5, 7, 3};
-		Elementos elementos = new Elementos();
-		List<Integer>vals = Arrays.asList(nums);
-		for (Integer x : vals) {
-			elementos.adiciona(x);
+
+	public static void main(String[] args) throws IOException { 
+		
+		BufferedReader in; in = new BufferedReader(new FileReader(args[0])); 
+		int n, m; 
+		
+		try {
+
+			String s = in.readLine(), vs[]; 
+			
+			while (s != null) { 
+				vs = s.split(" "); 
+				n = Integer.parseInt(vs[0]); 
+				m = Integer.parseInt(vs[1]); 
+				if((n == 0) && (m == 0)) { 
+					System.out.println ("FIM"); 
+					in.close(); 
+					return; 
+				} 
+				if ((n == 0) || (m == 0)) continue; 
+				if ((n < 2) || (m < 2) || (n > 100) || (m > 100)) continue;
+	
+				int mat[][] = new int[n][m], i, j; 
+				for (i = 0; i < n; i++) { 
+					s = in.readLine(); 
+					vs = s.split(" "); 
+					for(j = 0; j < m; j++) 
+						mat[i][j] = Integer.parseInt(vs[j]); 
+				}
+	
+				int aux, carac1, carac2, carac3, carac4; carac1 = carac2 = carac3 = carac4 = 0; 
+				//carac1: Ninguém resolveu todos os problemas 
+				
+				for (i = 0; i < n; i++) {
+					aux = 0;
+					for (j = 0; j < m; j++) 
+						aux += mat[i][j];
+					if (aux == m) {
+						carac1 = 0;
+						break;
+					} 
+				} 
+				if (i == n) carac1 = 1;
+	
+				//carac2: Todo problema foi resolvido por pelo menos uma //pessoa (não necessariamente a mesma) 
+				for (j = 0; j < m; j++) { 
+					aux = 0; 
+					for (i = 0; i < n; i++) 
+						aux += mat[i][j]; 
+					if (aux == 0) { 
+						carac2 = 0; 
+						break; 
+					} 
+				} 
+				if (j == m) carac2 = 1;
+		
+				//carac3: Não há nenhum problema resolvido por todos 
+				for (j = 0; j < m; j++) { 
+					aux = 0; 
+					for (i = 0; i < n; i++) 
+						aux += mat[i][j]; 
+					if (aux == n) { 
+						carac3 = 0; 
+						break; 
+					} 
+				} 
+				if (j == m) carac3 = 1; 
+				
+				//carac4: Todos resolveram ao menos um problema //(não necessariamente o mesmo) 
+				for (i = 0; i < n; i++) { 
+					aux = 0; 
+					for (j = 0; j < m; j++) 
+						aux += mat[i][j]; 
+					if (aux == 0) { 
+						carac4 = 0; 
+						break; 
+					} 
+				} 
+				if (i == n) carac4 = 1;
+	
+				System.out.println(carac1 + carac2 + carac3 + carac4); 
+				s = in.readLine();
+			}
+	
+		} catch (Exception e) {
+	
+			System.out.println("Excecao\n");
+	
+			in.close(); 
 		}
-		elementos.ordena();
-		//elementos.valores.forEach(System.out::println);
-		for (Elemento e : elementos.valores)
-			System.out.println(e);
 	}
 }
-
-
-
