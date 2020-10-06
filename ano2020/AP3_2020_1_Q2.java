@@ -1,4 +1,4 @@
-package br.cederj.comp.ano2011;
+package br.cederj.comp.ano2020;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +55,19 @@ class Poligono {
 		return perimetro + p.getDistancia(pontos.get(pontos.size() - 1));
 	}
 	
+	public boolean ehRegular() {
+		double distancia = pontos.get(0).getDistancia(pontos.get(pontos.size() - 1));
+		int pos = 1;
+		while (pos < pontos.size() - 1) {
+			Ponto p = pontos.get(pos);
+			Ponto p2 = pontos.get(pos + 1);
+			if (p.getDistancia(p2) != distancia)
+				return false;
+			pos++;
+		}
+		return true;
+	}
+	
 	// Obtém o centróide que é o ponto médio das coordenadas do polígono
 	public Ponto getCentroide() { // 2D
 		Ponto retorno = null;
@@ -75,10 +88,10 @@ class Poligono {
 }
 
 /**
- * Classe de teste para a aplicação (NÃO FOI PEDIDO NA QUESTÃO)
+ * Classe de teste para a aplicação
  */
 
-public class AP3_2011_1_Q2 {
+public class AP3_2020_1_Q2 {
 	public static void main(String[] args) {
 		Poligono figura = new Poligono();
 		figura.adicionaPonto(new Ponto(0,0));
@@ -86,7 +99,15 @@ public class AP3_2011_1_Q2 {
 		figura.adicionaPonto(new Ponto(1,1));
 		figura.adicionaPonto(new Ponto(1,0));
 		System.out.println("Perimetro da figura: " + figura.getPerimetro());
+		System.out.println("Figura regular: " + figura.ehRegular());
 		System.out.println("Centroide da figura: (" + figura.getCentroide().x + ", " + figura.getCentroide().y + ")");
 		
+		Poligono figura2 = new Poligono();
+		figura2.adicionaPonto(new Ponto(0,0));
+		figura2.adicionaPonto(new Ponto(1,0));
+		figura2.adicionaPonto(new Ponto(2,5));
+		System.out.println("Perimetro da figura: " + figura2.getPerimetro());
+		System.out.println("Figura regular: " + figura2.ehRegular());
+		System.out.println("Centroide da figura: (" + figura2.getCentroide().x + ", " + figura2.getCentroide().y + ")");
 	}
 }

@@ -24,6 +24,14 @@ class Data {
 			return -1;
 		return 1;
 	}
+	
+	public int anos (Data d) {
+		if (this.getAno() < d.getAno()) {
+			if ((this.getMes() < d.getMes()) || ((this.getMes() == d.getMes()) && (this.getDia() < d.getDia())))
+				return d.getAno() - this.getAno();
+		}
+		return 0;
+	}
 
 	public int getDia() {
 		return dia;

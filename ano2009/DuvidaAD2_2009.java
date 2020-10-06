@@ -32,9 +32,9 @@ public class DuvidaAD2_2009 {
 		Retangulo r1 = new Retangulo(2, 3);
 		Retangulo r2 = new Retangulo(7, 15);
 		Circulo c1 = new Circulo(5);
-		minhalista.add(r1);
-		minhalista.add(r2);
-		minhalista.add(c1);
+		minhalista.adiciona(r1);
+		minhalista.adiciona(r2);
+		minhalista.adiciona(c1);
 		minhalista.imprimirLista();
 	}
 }
